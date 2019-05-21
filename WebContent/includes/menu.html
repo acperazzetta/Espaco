@@ -1,0 +1,41 @@
+<script>
+
+	$(document).ready(function(){
+		
+		$('ul.main-nav li').each(function(i)
+		{
+	  	$(this).removeClass('active'); 
+		});
+		
+		$(activeMenu).addClass('active');
+	});	
+
+</script>		
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+				<!-- Fixed navbar -->
+				<header>
+					<div class="container">
+						<img style="max-height:72px;"data-all="/images/logo_72x72.png" src="/images/logo_72x72.png" alt="logo" style="padding-top: 8px;">
+						<img style="max-height:50px;" data-all="/images/logo_text.png" src="/images/logo_text.png" alt="logo">
+						<a href="#" class="menu-icon visible-xs-inline-block visible-sm-inline-block" data-menu-toggle><i class="icon icon-menu"></i></a>
+						<a href="#" class="search-icon visible-xs-inline-block visible-sm-inline-block" data-search-toggle><i class="icon icon-search"></i></a>
+						<ul class="main-nav list-unstyled" data-menu>
+							<li id="menu-home" data-height-md="li-menu">
+								<span><a href="/">Home</a></span>
+							</li><li id="menu-services" data-height-md="li-menu">
+								<span><a href="/services">Serviços</a></span>
+              </li><li class="active" id="menu-activities" data-height-md="li-menu">
+                <span><a href="/activities">Atividades</a></span>
+							</li><li id="menu-interacting" data-height-md="li-menu">
+								<span><a href="/interacting">Interacting</a></span>
+							</li><li id="menu-contact" data-height-md="li-menu">
+								<span><a href="/contact">Contacto</a></span>
+              </li><li id="menu-include" data-height-md="li-menu">
+                <span><a href="/include/includeService.htm">Include<br/>Spring</a></span>
+              </li><li id="menu-includeJSP" data-height-md="li-menu">
+                <span><a href="/servicesJSP">Include<br/>JSP</a></span>
+							</li>
+						</ul>
+					</div>
+				</header>
