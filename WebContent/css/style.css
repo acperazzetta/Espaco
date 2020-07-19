@@ -10257,6 +10257,9 @@ ul li.checkmark {
 	list-style-position: inside;
 }
 
+.template {
+	display: none;
+}
 .italic {
   font-style: italic;
 }

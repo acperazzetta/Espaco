@@ -9,7 +9,7 @@
 	<link rel="canonical" href="http://localhost:8080/Flourish_html/">
     
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/css/style.css?ver=4" rel="stylesheet">
+	<link href="/css/style.css?ver=5" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
 	<link href='//fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	<link href="//fonts.googleapis.com/css?family=Bree+Serif" media="screen" rel="stylesheet" type="text/css" />
@@ -29,12 +29,39 @@
     <script src="/js/bootstrap.js"></script>
     <script>
     var activeMenu = '#menu-services';
+    
+    function loadServices() {
+      $.ajax({
+        type: "post",
+        url: "/rest/loadAllServices.ajax",
+        dataType: "json",
+        cache: false,
+        success: function(response) {
+          template = $(".template");
+          response.forEach(service => {
+            newService = template.clone();
+            newService.removeClass("template")
+                      .find("a")
+                      .attr("data-id", service.id)
+                      .text(service.title);
+            newService.attr("id", '');
+            $("#listServices").append(newService);
+          })
+        },
+        error: function (response) {
+          alert ("err: " + response);
+        }
+      })
+    }
 
 		$(document).ready(function(){
       $("#includedMenu").load("/includes/menu.html");
       $("#includedContent").load("content/content.html");
       $("#includedFooter").load("/includes/footer.html");
-			$(window).trigger('resize');									
+      loadServices();
+      $(window).trigger('resize');									
+
+		
 		});
 		$(document).on("click", ".open-Modal", function () {
 			$(".modal-header #serviceTitle").text('');
@@ -42,6 +69,16 @@
 			$(".modal-body #serviceImage").attr('src','');
 		  var serviceId = $(this).data('id');
 		  
+      /*
+      Old original version, getting the Service from Json file
+      $.getJSON("services.js?v=6", function(result){
+        var service = result.filter(function(v){return v.id==serviceId});
+        $(".modal-header #serviceTitle").text(service[0].title);
+        $(".modal-body #serviceText").append(service[0].text);
+        $(".modal-body #serviceImage").attr('src', service[0].image);
+      });
+      */
+      // New version, getting the Service by Ajax from Database
 		  $.ajax({
 		  	type: "post",
 		  	url: "/rest/loadService.ajax",
@@ -61,14 +98,6 @@
 		  		alert ("err: " + response);
 		  	}
 		  })
-		  /*
-		  $.getJSON("services.js?v=6", function(result){
-		  	var service = result.filter(function(v){return v.id==serviceId});
-			  $(".modal-header #serviceTitle").text(service[0].title);
-			  $(".modal-body #serviceText").append(service[0].text);
-			  $(".modal-body #serviceImage").attr('src', service[0].image);
-			});
-		  */
 		});
 		</script>
 	</head>

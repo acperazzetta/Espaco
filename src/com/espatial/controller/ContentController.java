@@ -1,5 +1,7 @@
 package com.espatial.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,6 +25,14 @@ public class ContentController {
 	@Autowired
 	public ServicesService servicesService;
 
+	@RequestMapping(value = "/loadAllServices.ajax", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public List<Service> getAllServices (HttpServletRequest request, HttpServletResponse response) {
+
+		List<Service> service = servicesService.getAllServices();
+		return service;
+	}
+	
 	@RequestMapping(value = "/loadService.ajax", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public Service getService (@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) {
@@ -30,7 +40,6 @@ public class ContentController {
 		Service service = servicesService.getService(id);
 		return service;
 	}
-	
 	
 	@RequestMapping(value = "/includeService", method = RequestMethod.GET)
 	public ModelAndView showNewService(HttpServletRequest request, HttpServletResponse response) {

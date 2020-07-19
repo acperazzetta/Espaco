@@ -52,7 +52,7 @@
       $("#action")[0].value = action;
     	$("#id")[0].value = $("#id_" + id)[0].innerText;
       $("#title")[0].value = $("#title_" + id)[0].innerText;
-      $("#subtitle")[0].value = $("#subtitle_" + id)[0].innerText;
+//      $("#subtitle")[0].value = $("#subtitle_" + id)[0].innerText;
       $("#text")[0].value = $("#text_" + id)[0].innerText;
       $("#id").attr('readonly', true);
       $('html, body').animate({ scrollTop: 0 }, 'fast');
@@ -124,11 +124,13 @@
                         <form:input placeholder="Title" path="title" name="title" id="title" class="form-control" required="required" maxlength="50"/> 
                         <small class="help-block"></small>
                       </div>
-                      <div class="form-group">
+<%--
+                       <div class="form-group">
                         <form:input placeholder="SubTitle" path="subtitle" name="subtitle" id="subtitle" class="form-control" required="required" maxlength="50"/> 
                         <small class="help-block"></small>
                       </div>
-                      <div class="form-group">
+ --%>
+                       <div class="form-group">
                         <form:textarea placeholder="Put the text here" path="text" name="text" id="text" class="form-control" required="required" style="height: 150px;"></form:textarea>
                         <small class="help-block"></small>
                       </div>
@@ -159,8 +161,8 @@
                     <th scope="col">#</th>
 							      <th scope="col">Id</th>
 							      <th scope="col">Title</th>
-                    <th scope="col">SubTitle</th>
-							      <th scope="col">Text</th>
+<!--                     <th scope="col">SubTitle</th>-->							      
+                    <th scope="col">Text</th>
 							      <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
 							    </tr>
@@ -172,7 +174,7 @@
 							      <th scope="row">${loop.index + 1}</th>
 							      <td id="id_${service.id}">${service.id}</td>
 							      <td id="title_${service.id}">${service.title}</td>
-                    <td id="subtitle_${service.id}">${service.subtitle}</td>
+<!--                     <td id="subtitle_${service.id}">${service.subtitle}</td>-->
 							      <td id="text_${service.id}">${service.text}</td>
                     <td class="text-center"><img height="20px" src="/images/icon_edit.png" onClick="setValues('${service.id}', '<%=Service.UPDATE%>');"></td>
                     <td class="text-center"><img height="20px" src="/images/icon_delete.png" onClick="setValues('${service.id}', '<%=Service.DELETE%>');"></td>
