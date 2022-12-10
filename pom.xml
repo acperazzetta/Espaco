@@ -6,7 +6,7 @@
   <packaging>war</packaging>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>5.2.7.RELEASE</spring.version>
+    <spring.version>6.0.0</spring.version>
     <jackson.library>2.9.10.5</jackson.library>
     <mysql.connector.version>8.0.16</mysql.connector.version>
   </properties>
